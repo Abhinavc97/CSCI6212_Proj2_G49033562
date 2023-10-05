@@ -2,7 +2,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Point {
+public class Point { //user-defined datatype Point(x,y)
     private double x;
     private double y;
 
@@ -32,10 +32,7 @@ public class Point {
         this.y = y;
     }
 
-    @Override
-    public String toString() {
-        return "(" + x + ", " + y + ")";
-    }
+}
 
     // Merge Sort for an array of points based on x-coordinate in descending order
     public static void mergeSort(Point[] arr, int left, int right) {
@@ -94,10 +91,9 @@ public class Point {
 
     public static void main(String[] args) {
         int [] n={10,100,1000,10000,100000,1000000,10000000,99999998};//values of n for which code is being tested
+        
         for(int c=0;c<8;++c){
-            
-            
-            Point[] points = new Point[n[c]];
+            Point[] points = new Point[n[c]];//size of array determined by value of n passed
        
             /* Point[] points = new Point[]{
             new Point(453, 726),
@@ -110,39 +106,41 @@ public class Point {
             new Point(154, 267),
             new Point(912, 58),
             new Point(321, 899)
-        };*/
+            };*/
 
-            // Generate random points and store them in the array
-            for (int i = 0; i < n[c]; i++) {
+            // Generating random points and storing them in the array
+            for (int i = 0; i < n[c]; i++) { //size of array determined by value of n passed
                 double x = Math.random() * 1000; // Random x coordinate between 0 and 1000
                 double y = Math.random() * 1000; // Random y coordinate between 0 and 1000
                 points[i] = new Point(x, y);
             }
 
             long start = System.nanoTime();//start time
-            // Sort the points based on x-coordinate in descending order using merge sort
+            
+            // Sorting the points based on x-coordinate in descending order using merge sort
             mergeSort(points, 0, points.length - 1);
 
-            /*// Display the sorted points
-            System.out.println("Sorted Points (Descending Order based on X-coordinate):");
+            // Display the sorted points
+            /*System.out.println("Sorted Points (Descending Order based on X-coordinate):");
             for (int i = 0; i < n[c]; i++) {
             System.out.println("Point " + (i + 1) + ": " + points[i]);
             }*/
 
             List<Point> POpoints = new ArrayList<>();
             double currMaxY = Double.NEGATIVE_INFINITY;
-            for (Point p: points) {
+            
+            for (Point p: points) { //checking if given point is pareto-optimal or not
                 if (p.getY() > currMaxY) {
-                POpoints.add(p);
+                POpoints.add(p);  //if the point is Pareto optimal it is added to the list of points
                 currMaxY = p.getY();
                 }
             }
             long end = System.nanoTime();//end time
             System.out.println("for n=" + n[c]);
-            System.out.println("Elapsed Time in nano seconds: "+ (end-start));
+            System.out.println("Elapsed Time in nano seconds: "+ (end-start)); //total time elapsed for current value of n
 
-           /* // Display the PO points
-            System.out.println("Pareto Optimal Points:");
+           // Display the PO points
+           /* System.out.println("Pareto Optimal Points:");
             for (Point p: POpoints) {
                 System.out.println(p.getX()+","+p.getY());
             }*/
