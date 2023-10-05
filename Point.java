@@ -94,7 +94,8 @@ public class Point { //user-defined datatype Point(x,y)
         
         for(int c=0;c<8;++c){
             Point[] points = new Point[n[c]];//size of array determined by value of n passed
-       
+
+            //test values
             /* Point[] points = new Point[]{
             new Point(453, 726),
             new Point(827, 314),
